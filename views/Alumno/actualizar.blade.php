@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
                 <div class="card">
-                    <div class="card-header">{{ __('ASESOR INTERNO') }}</div>
+                    <div class="card-header">{{ __('ALUMNO') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -13,22 +13,22 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{ route('asesor-interno.update', $asesoresInternos->idAsesorI) }}" method="POST">
+                        <form action="{{ route('alumno.update', $alumnos->idAlumno) }}" method="POST">
                             @csrf @method('PUT')
                             <div class="mb-3">
                                 <label for="txtNombre" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" name="txtNombre" id="txtNombre"
-                                    value="{{ $asesoresInternos->nombre }}">
+                                    value="{{ $alumnos->alumno }}">
                             </div>
                             <div class="mb-3">
                                 <label for="txtEmail" class="form-label">Email</label>
                                 <input type="text" class="form-control" name="txtEmail" id="txtEmail"
-                                    value="{{ $asesoresInternos->email }}">
+                                    value="{{ $alumnos->alumno }}">
                             </div>
                             <div class="mb-3">
                                 <label for="txtTelefono" class="form-label">Telefono</label>
                                 <input type="text" class="form-control" name="txtTelefono" id="txtTelefono"
-                                    value="{{ $asesoresInternos->telefono }}">
+                                    value="{{ $alumnos->alumno }}">
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>

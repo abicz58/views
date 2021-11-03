@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
                 <div class="card">
-                    <div class="card-header">{{ __('SECTOR') }}</div>
+                    <div class="card-header">{{ __('CONVENIO') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -13,29 +13,36 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <button onclick="location.href='{{ route('sector.create') }}'"
+                        <button onclick="location.href='{{ route('convenio.create') }}'"
                             class="btn btn-primary">Nuevo</button>
                         <br><br>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Sector</th>
-                                    <th scope="col">Acciones</th>
+                                    <th scope="col">Folio</th>
+                                    <th scope="col">Nombre del convenio</th>
+                                    <th scope="col">Fecha de firma</th>
+                                    <th scope="col">Fecha de vigencia</th>
+                                    <th scope="col">Tipo de convenio</th>
+                                    <th scope="col">Instancia</th>
+                                    <th scope="col">Modificar</th>
+                                    <th scope="col">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($sectores as $sector)
+                                @foreach ($carreras as $carrera)
                                     <tr>
-                                        <th scope="row">{{ $sector->idSector }}</th>
-                                        <td> {{ $sector->nomSector }} </td>
+                                        <th scope="row">{{ $convenio->idConvenio }}</th>
+                                        <td> {{ $convenio->convenio }} </td>
                                         <td>
                                             <div style="display: flex; justify-content: start;">
                                                 <button style="margin-right: 1rem"
-                                                    onclick="location.href='{{ route('sector.edit', $sector->idSector) }}'"
+                                                    onclick="location.href='{{ route('convenio.edit', $convenio->idConvenio) }}'"
                                                     class="btn btn-outline-primary">Modificar</button>
-                                                <form action="{{ route('sector.destroy', $sector->idSector) }}"
-                                                    method="POST">
+                                                <form
+                                                    action="{{ route('convenio.destroy', $convenio->idConvenio) }}"
+                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-outline-danger">Eliminar</button>

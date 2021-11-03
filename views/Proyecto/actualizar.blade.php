@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
                 <div class="card">
-                    <div class="card-header">{{ __('ASESOR INTERNO') }}</div>
+                    <div class="card-header">{{ __('PROYECTO') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -13,22 +13,17 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{ route('asesor-interno.update', $asesoresInternos->idAsesorI) }}" method="POST">
+                        <form action="{{ route('proyecto.update', $proyectos->idProyecto) }}" method="POST">
                             @csrf @method('PUT')
                             <div class="mb-3">
-                                <label for="txtNombre" class="form-label">Nombre</label>
+                                <label for="txtNombre" class="form-label">Nombre del proyecto</label>
                                 <input type="text" class="form-control" name="txtNombre" id="txtNombre"
-                                    value="{{ $asesoresInternos->nombre }}">
+                                    value="{{ $proyectos->proyecto }}">
                             </div>
                             <div class="mb-3">
-                                <label for="txtEmail" class="form-label">Email</label>
-                                <input type="text" class="form-control" name="txtEmail" id="txtEmail"
-                                    value="{{ $asesoresInternos->email }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="txtTelefono" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" name="txtTelefono" id="txtTelefono"
-                                    value="{{ $asesoresInternos->telefono }}">
+                                <label for="txtPeriodo" class="form-label">Modalidad</label>
+                                <input type="text" class="form-control" name="txtModalidad" id="txtModalidad"
+                                    value="{{ $proyectos->proyecto }}">
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>

@@ -13,8 +13,8 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <button onclick="location.href='{{ route('asesorinterno.create') }}'"
-                        class="btn btn-primary">Nuevo</button>
+                        <button onclick="location.href='{{ route('asesor-interno.create') }}'"
+                            class="btn btn-primary">Nuevo</button>
                         <br><br>
                         <table class="table">
                             <thead>
@@ -23,20 +23,23 @@
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Telefono</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($asesoresI as $asesorI)
+                                @foreach ($asesoresInternos as $asesorInterno)
                                     <tr>
-                                        <th scope="row">{{ $asesorI->idAsesorI }}</th>
-                                        <td> {{ $asesorI->nombre }} </td>
+                                        <th scope="row">{{ $asesorInterno->idAsesorI }}</th>
+                                        <td> {{ $asesorInterno->nombre }} </td>
+                                        <td> {{ $asesorInterno->email }} </td>
+                                        <td> {{ $asesorInterno->telefono }} </td>
                                         <td>
                                             <div style="display: flex; justify-content: start;">
                                                 <button style="margin-right: 1rem"
-                                                    onclick="location.href='{{ route('asesorI.edit', $asesorI->idAsesorI) }}'"
+                                                    onclick="location.href='{{ route('asesor-interno.edit', $asesorInterno->idAsesorI) }}'"
                                                     class="btn btn-outline-primary">Modificar</button>
                                                 <form
-                                                    action="{{ route('asesorI.destroy', $asesorI->idAsesorI) }}"
+                                                    action="{{ route('asesor-interno.destroy', $asesorInterno->idAsesorI) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
