@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
                 <div class="card">
-                    <div class="card-header">{{ __('ASESOR INTERNO') }}</div>
+                    <div class="card-header">{{ __('AGREGAR ASESOR INTERNO') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -17,15 +17,18 @@
                             {{ csrf_field() }}
                             <div class="mb-3">
                                 <label for="txtNombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="txtNombre" id="txtNombre">
+                                <input type="text" class="form-control" name="txtNombre" id="txtNombre"
+                                    onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <div class="mb-3">
                                 <label for="txtEmail" class="form-label">Email</label>
-                                <input type="text" class="form-control" name="txtEmail" id="txtEmail">
+                                <input type="text" class="form-control" name="txtEmail" id="txtEmail"
+                                    onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <div class="mb-3">
                                 <label for="txtTelefono" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" name="txtTelefono" id="txtTelefono">
+                                <input type="text" class="form-control" name="txtTelefono" id="txtTelefono"
+                                    onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Agregar</button>
                         </form>

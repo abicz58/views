@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
                 <div class="card">
-                    <div class="card-header">{{ __('PROYECTO') }}</div>
+                    <div class="card-header">{{ __('MODIFICAR PROYECTO') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -18,12 +18,14 @@
                             <div class="mb-3">
                                 <label for="txtNombre" class="form-label">Nombre del proyecto</label>
                                 <input type="text" class="form-control" name="txtNombre" id="txtNombre"
-                                    value="{{ $proyectos->proyecto }}">
+                                    value="{{ $proyectos->proyecto }}"
+                                    onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <div class="mb-3">
                                 <label for="txtPeriodo" class="form-label">Modalidad</label>
                                 <input type="text" class="form-control" name="txtModalidad" id="txtModalidad"
-                                    value="{{ $proyectos->proyecto }}">
+                                    value="{{ $proyectos->proyecto }}"
+                                    onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>

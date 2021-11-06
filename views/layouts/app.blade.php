@@ -9,7 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="shortcut icon" href="https://www.voaxaca.tecnm.mx/wp-content/uploads/2020/05/itvo.ico"
+        sizes="16x16 24x24 36x36 48x48" type="image/x-icon">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -23,7 +24,9 @@
 
 <body>
     <div id="app">
-        <div style="background-color: blue; width=100%; height=50px">
+        <div style="background-color:#1B3A6D; width=100%; height=50px">
+            <img src="https://plataforma.voaxaca.tecnm.mx/pluginfile.php/1/theme_moove/logo/1629958313/logo-itvo.png"
+                alt="TecNM/I.T.V.O." width="40%" height="50px">
         </div>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
@@ -151,17 +154,18 @@
                                 </div>
                             </li>
                             {{-- logout --}}
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown text-uppercase">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right text-capitalize"
+                                    aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                        {{ __('Salir') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"

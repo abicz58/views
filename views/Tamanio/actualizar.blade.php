@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
                 <div class="card">
-                    <div class="card-header">{{ __('TAMAÑO') }}</div>
+                    <div class="card-header">{{ __('MODIIFCAR TAMAÑO') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -18,7 +18,8 @@
                             <div class="mb-3">
                                 <label for="txtNombre" class="form-label">Tamaño</label>
                                 <input type="text" class="form-control" name="txtNombre" id="txtNombre"
-                                    value="{{ $tamanios->nomTamanio }}">
+                                    value="{{ $tamanios->nomTamanio }}"
+                                    onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>

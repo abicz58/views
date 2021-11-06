@@ -21,31 +21,35 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Folio</th>
-                                    <th scope="col">Nombre del convenio</th>
                                     <th scope="col">Fecha de firma</th>
                                     <th scope="col">Fecha de vigencia</th>
+                                    <th scope="col">Estatus</th>
                                     <th scope="col">Tipo de convenio</th>
                                     <th scope="col">Instancia</th>
-                                    <th scope="col">Modificar</th>
-                                    <th scope="col">Eliminar</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($carreras as $carrera)
+                                @foreach ($convenios as $convenio)
                                     <tr>
                                         <th scope="row">{{ $convenio->idConvenio }}</th>
-                                        <td> {{ $convenio->convenio }} </td>
+                                        <td> {{ $convenio->folio }} </td>
+                                        <td> {{ $convenio->fechaFirma }} </td>
+                                        <td> {{ $convenio->fechaVigencia }} </td>
+                                        <td> {{ $convenio->estatus }} </td>
+                                        <td> {{ $convenio->idTipoCon }} </td>
+                                        <td> {{ $convenio->idInstancia }} </td>
                                         <td>
                                             <div style="display: flex; justify-content: start;">
                                                 <button style="margin-right: 1rem"
                                                     onclick="location.href='{{ route('convenio.edit', $convenio->idConvenio) }}'"
                                                     class="btn btn-outline-primary">Modificar</button>
-                                                <form
-                                                    action="{{ route('convenio.destroy', $convenio->idConvenio) }}"
-                                                     method="POST">
+                                                <form action="{{ route('convenio.destroy', $convenio->idConvenio) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                                                    <button type="submit" class="btn btn-outline-danger"
+                                                        onclick="return confirm( '¿Esta seguro de borrar {{ $convenio->folio }}?') ">Eliminar</button>
                                                 </form>
                                             </div>
 
