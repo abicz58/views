@@ -16,24 +16,24 @@
                         <form action="{{ route('alumno.update', $alumnos->idAlumno) }}" method="POST">
                             @csrf @method('PUT')
                             <div class="mb-3">
-                                <label for="txtNombre" class="form-label">Nombre</label>
+                                <label for="txtNombre" class="form-label">NOMBRE</label>
                                 <input type="text" class="form-control" name="txtNombre" id="txtNombre"
                                     value="{{ $alumnos->alumno }}"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <div class="mb-3">
-                                <label for="txtEmail" class="form-label">Email</label>
+                                <label for="txtEmail" class="form-label">EMAIL</label>
                                 <input type="text" class="form-control" name="txtEmail" id="txtEmail"
                                     value="{{ $alumnos->alumno }}"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <div class="mb-3">
-                                <label for="txtTelefono" class="form-label">Telefono</label>
+                                <label for="txtTelefono" class="form-label">TELÉFONO</label>
                                 <input type="text" class="form-control" name="txtTelefono" id="txtTelefono"
                                     value="{{ $alumnos->alumno }}"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                            <button type="submit" class="btn btn-primary">ACTUALIZAR</button>
                         </form>
                     </div>
                 </div>

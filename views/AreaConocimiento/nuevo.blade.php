@@ -16,11 +16,11 @@
                         <form method="POST" action="{{ route('area-conocimiento.store') }}">
                             {{ csrf_field() }}
                             <div class="mb-3">
-                                <label for="txtNombre" class="form-label">Área de conocimiento</label>
+                                <label for="txtNombre" class="form-label">ÁREA DE CONOCIMIENTO</label>
                                 <input type="text" class="form-control" name="txtNombre" id="txtNombre"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Agregar</button>
+                            <button type="submit" class="btn btn-primary">AGREGAR</button>
                         </form>
                     </div>
                 </div>
