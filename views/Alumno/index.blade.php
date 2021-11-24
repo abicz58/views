@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
-                <div class="card">
-                    <div class="card-header">{{ __('ALUMNOS') }}</div>
+                <div class="card ">
+                    <div class="card-header">{{ __('LISTADO DE ALUMNOS') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -13,13 +13,18 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <button onclick="location.href='{{ route('alumno.create') }}'"
-                            class="btn btn-primary">NUEVO</button>
-                        <br><br>
+                        <div class="div-flex">
+                            <button onclick="location.href='{{ route('alumno.create') }}'"
+                                class="btn btn-primary ">NUEVO</button>
+                            <div class="input-group col-5">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                                <input id="busqueda" type="text" class="form-control" placeholder="BÚSQUEDA"
+                                    style="text-transform: uppercase;" onkeyup='busquedaTabla()'>
+                            </div>
+                        </div>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
                                     <th scope="col">NOMBRE</th>
                                     <th scope="col">EMAIL</th>
                                     <th scope="col">TELÉFONO</th>
@@ -30,11 +35,14 @@
                             <tbody>
                                 @foreach ($alumnos as $alumno)
                                     <tr>
-                                        <th scope="row">{{ $alumno->idAlumno }}</th>
                                         <td> {{ $alumno->nombre }} </td>
                                         <td> {{ $alumno->email }} </td>
                                         <td> {{ $alumno->telefono }} </td>
-                                        <td> {{ $alumno->idCarrera }} </td>
+                                        @foreach ($carreras as $carrera)
+                                            @if ($carrera->idCarrera === $alumno->idCarrera)
+                                                <td> {{ $carrera->nomCarrera }} </td>
+                                            @endif
+                                        @endforeach
                                         <td>
                                             <div style="display: flex; justify-content: start;">
                                                 <button style="margin-right: 1rem"
@@ -45,7 +53,7 @@
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-outline-danger"
-                                                        onclick="return confirm( '¿Esta seguro de borrar {{ $alumno->nombre }}?') ">ELIMINAR</button>
+                                                        onclick="return confirm( '¿ESTÁ SEGURO DE ELIMINAR {{ $alumno->nombre }}?') ">ELIMINAR</button>
                                                 </form>
                                             </div>
 

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
                 <div class="card">
-                    <div class="card-header">{{ __('LISTADO DE PERIODOS') }}</div>
+                    <div class="card-header">{{ __('LISTADO DE LOS ALCANCES') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -14,7 +14,7 @@
                             </div>
                         @endif
                         <div class="div-flex">
-                            <button onclick="location.href='{{ route('periodo.create') }}'"
+                            <button onclick="location.href='{{ route('alcance.create') }}'"
                                 class="btn btn-primary ">NUEVO</button>
                             <div class="input-group col-5">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
@@ -25,28 +25,27 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">PERIODO</th>
+                                    <th scope="col">ALCANCE</th>
                                     <th scope="col">ACCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($periodos as $periodo)
+                                @foreach ($alcances as $alcance)
                                     <tr>
-                                        <td> {{ $periodo->periodo }} </td>
+                                        <td> {{ $alcance->nombre }} </td>
                                         <td>
                                             <div style="display: flex; justify-content: start;">
                                                 <button style="margin-right: 1rem"
-                                                    onclick="location.href='{{ route('periodo.edit', $periodo->idPeriodo) }}'"
+                                                    onclick="location.href='{{ route('alcance.edit', $alcance->idAlcance) }}'"
                                                     class="btn btn-outline-primary">MODIFICAR</button>
-                                                <form action="{{ route('periodo.destroy', $periodo->idPeriodo) }}"
+                                                <form action="{{ route('alcance.destroy', $alcance->idAlcance) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-outline-danger"
-                                                        onclick="return confirm( '¿ESTÁ SEGURO DE ELIMINAR {{ $periodo->periodo }}?') ">ELIMINAR</button>
+                                                        onclick="return confirm( '¿ESTÁ SEGURO DE ELIMINAR {{ $alcance->nombre }}?') ">ELIMINAR</button>
                                                 </form>
                                             </div>
-
                                         </td>
                                     </tr>
                                 @endforeach

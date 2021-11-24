@@ -3,9 +3,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-10 col-xs-12">
+            <div class="col-md-11 col-xs-11">
                 <div class="card">
-                    <div class="card-header">{{ __('INSTANCIA') }}</div>
+                    <div class="card-header">{{ __('LISTADO DE INSTANCIAS') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -13,53 +13,48 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <button onclick="location.href='{{ route('instancia.create') }}'"
-                            class="btn btn-primary">NUEVO</button>
-                        <br><br>
-                        <table class="table">
+                        <div class="div-flex">
+                            <button onclick="location.href='{{ route('instancia.create') }}'"
+                                class="btn btn-primary ">NUEVO</button>
+                            <div class="input-group col-5">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                                <input id="busqueda" type="text" class="form-control" placeholder="BÚSQUEDA"
+                                    style="text-transform: uppercase;" onkeyup='busquedaTabla()'>
+                            </div>
+                        </div>
+                        <table class="table col-md-10">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
                                     <th scope="col">NOMBRE</th>
                                     <th scope="col">RESPONSABLE</th>
                                     <th scope="col">EMAIL</th>
                                     <th scope="col">TELÉFONO</th>
-                                    <th scope="col">GIRO</th>
-                                    <th scope="col">SECTOR</th>
-                                    <th scope="col">TIPO SECTOR</th>
-                                    <th scope="col">TAMAÑO</th>
-                                    <th scope="col">ALCANCE</th>
-                                    <th scope="col">ÁREA DE CONOCIMIENTO</th>
                                     <th scope="col">ACCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($instancias as $instancia)
                                     <tr>
-                                        <th scope="row">{{ $instancia->idInstancia }}</th>
                                         <td> {{ $instancia->nombre }} </td>
                                         <td> {{ $instancia->responsable }} </td>
                                         <td> {{ $instancia->email }} </td>
                                         <td> {{ $instancia->telefono }} </td>
-                                        <td> {{ $instancia->idGiro }} </td>
-                                        <td> {{ $instancia->idSector }} </td>
-                                        <td> {{ $instancia->idTipoSec }} </td>
-                                        <td> {{ $instancia->idTamanio }} </td>
-                                        <td> {{ $instancia->idAlcance }} </td>
-                                        <td> {{ $instancia->idAreaC }} </td>
                                         <td>
-                                            <button
-                                                onclick="location.href='{{ route('instancia.edit', $instancias->idInstancia) }}'"
-                                                class="btn btn-outline-primary">MODIFICAR</button>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('instancia.destroy', $instancias->idInstancia) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-outline-danger"
-                                                    onclick="return confirm( '¿Esta seguro de borrar {{ $instancias->nombre }}?') ">ELIMINAR</button>
-                                            </form>
+                                            <div style="display: flex; justify-content: start;">
+                                                <button style="margin-right: 1rem"
+                                                    onclick="location.href='{{ route('instancia.show', $instancia->idInstancia) }}'"
+                                                    class="btn btn-outline-secondary">DETALLE</button>
+                                                <button style="margin-right: 1rem"
+                                                    onclick="location.href='{{ route('instancia.edit', $instancia->idInstancia) }}'"
+                                                    class="btn btn-outline-primary">MODIFICAR</button>
+                                                <form action="{{ route('instancia.destroy', $instancia->idInstancia) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-outline-danger"
+                                                        onclick="return confirm( '¿ESTÁ SEGURO DE ELIMINAR {{ $instancia->nombre }}?') ">ELIMINAR</button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

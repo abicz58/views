@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-xs-12">
                 <div class="card">
-                    <div class="card-header">{{ __('ASESORES EXTERNOS') }}</div>
+                    <div class="card-header">{{ __('LISTADO DE ASESORES EXTERNOS') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -13,13 +13,18 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <button onclick="location.href='{{ route('asesor-externo.create') }}'"
-                            class="btn btn-primary">Nuevo</button>
-                        <br><br>
+                        <div class="div-flex">
+                            <button onclick="location.href='{{ route('asesor-externo.create') }}'"
+                                class="btn btn-primary ">NUEVO</button>
+                            <div class="input-group col-5">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                                <input id="busqueda" type="text" class="form-control" placeholder="BÚSQUEDA"
+                                    style="text-transform: uppercase;" onkeyup='busquedaTabla()'>
+                            </div>
+                        </div>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
                                     <th scope="col">NOMBRE</th>
                                     <th scope="col">EMAIL</th>
                                     <th scope="col">TELÉFONO</th>
@@ -29,7 +34,6 @@
                             <tbody>
                                 @foreach ($asesoresExternos as $asesorExterno)
                                     <tr>
-                                        <th scope="row">{{ $asesorExterno->idAsesorE }}</th>
                                         <td> {{ $asesorExterno->nombre }} </td>
                                         <td> {{ $asesorExterno->email }} </td>
                                         <td> {{ $asesorExterno->telefono }} </td>
@@ -44,7 +48,7 @@
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-outline-danger"
-                                                        onclick="return confirm( '¿Esta seguro de borrar {{ $asesorExterno->nombre }}?') ">ELIMINAR</button>
+                                                        onclick="return confirm( '¿ESTA SEGURO DE ELIMINAR {{ $asesorExterno->nombre }}?') ">ELIMINAR</button>
                                                 </form>
                                             </div>
                                         </td>

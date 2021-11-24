@@ -22,37 +22,73 @@
                             </div>
                             <div class="mb-3">
                                 <label for="txtFechaF" class="form-label">FECHA DE FIRMA</label>
-                                <input type="text" class="form-control" name="txtFechaF" id="txtFechaF"
+                                <input type="date" class="form-control" name="dateFechaFirma" id="dateFechaFirma"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <div class="mb-3">
                                 <label for="txtFechaV" class="form-label">FECHA DE VIGENCIA</label>
-                                <input type="text" class="form-control" name="txtFechaV" id="txtFechaV"
+                                <input type="date" class="form-control" name="dateFechaVigencia" id="dateFechaVigencia"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sltEstatus" class="form-label">ESTATUS</label>
+                                <select name="sltEstatus" id="sltEstatus" class="form-control"
+                                    onChange="agregarID(sltEstatus, txtEstatus)" required>
+                                    <option selected>ELIJA EL ESTATUS</option>
+                                    <option value="VIGENTE">VIGENTE</option>
+                                    <option value="FINALIZADO">FINALIZADO</option>
+                                    <option value="CANCELADO">CANCELADO</option>
+                                </select>
                             </div>
                             <div class="mb-3">
-                                <label for="txtStatus" class="form-label">STATUS</label>
-                                <input type="text" class="form-control" name="txtStatus" id="txtStatus"
+                                <label for="txtFolio" class="form-label">URL DEL CONVENIO DIGITAL</label>
+                                <input type="text" class="form-control" name="txtUrlConvenio" id="txtUrlConvenio"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
-                            <br>
-                            <select name="sltTipo" class="form-select form-select-lg mb-3"
-                                aria-label=".form-select-lg example" required>
-                                <option selected>ELIJA EL TIPO DE CONVENIO</option>
-                                @foreach ($tiposConvenios as $tipocon)
-                                    <option value="{{ $tipocon->idTipoConvenio }}">{{ $tipocon->nomTipoConvenio }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <br>
-                            <select name="sltInstancia" class="form-select form-select-lg mb-3"
-                                aria-label=".form-select-lg example" required>
-                                <option selected>ELIJA LA INSTANCIA</option>
-                                @foreach ($instancias as $instancia)
-                                    <option value="{{ $instancia->idInstancia }}">{{ $instancia->nombre }}</option>
-                                @endforeach
-                            </select>
-                            <br>
+                            <div class="form-group">
+                                <label for="sltTipo" class="form-label">TIPO DE CONVENIO</label>
+                                <select name="sltTipo" id="sltTipo" class="form-control"
+                                    onChange="agregarID(sltTipo, txtIdTipoCon)" required>
+                                    <option selected>ELIJA EL TIPO DE CONVENIO</option>
+                                    @foreach ($tiposConvenios as $tipocon)
+                                        <option value="{{ $tipocon->idTipoConvenio }}">{{ $tipocon->nomTipoConvenio }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sltInstancia" class="form-label">INSTANCIA</label>
+                                <select name="sltInstancia" id="sltInstancia" class="form-control"
+                                    onChange="agregarID(sltInstancia, txtIdInstancia)" required>
+                                    <option selected>ELIJA LA INSTANCIA</option>
+                                    @foreach ($instancias as $instancia)
+                                        <option value="{{ $instancia->idInstancia }}">{{ $instancia->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sltIndicador" class="form-label">INDICADOR</label>
+                                <select name="sltIndicador" id="sltIndicador" class="form-control"
+                                    onChange="agregarID(sltIndicador, txtIdIndicador)" required>
+                                    <option selected>ELIJA EL INDICADOR</option>
+                                    @foreach ($indicadores as $indicador)
+                                        <option value="{{ $indicador->idIndicador }}">{{ $indicador->descripcion }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            {{-- @if ($convenios === 1)
+                                <input hidden type="text" name="txtIdConvenio" id="txtIdConvenio" value="1">
+                            @else
+                                <input hidden type="text" name="txtIdConvenio" id="txtIdConvenio"
+                                    value="{{ $convenios }}">
+                            @endif --}}
+                            <input hidden type="text" name="txtIdIndicador" id="txtIdIndicador">
+                            <input hidden type="text" name="txtEstatus" id="txtEstatus">
+                            <input hidden type="text" name="txtIdTipoCon" id="txtIdTipoCon">
+                            <input hidden type="text" name="txtIdInstancia" id="txtIdInstancia">
+                            <input hidden type="text" name="txtIdUsuario" id="txtIdUsuario"
+                                value=" {{ Auth::user()->id }}">
                             <button type="submit" class="btn btn-primary">AGREGAR</button>
                         </form>
                     </div>
