@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-11 col-xs-11">
+            <div class="col-md-10 col-xs-11">
                 <div class="card">
                     <div class="card-header">{{ __('LISTADO DE INSTANCIAS') }}</div>
 
@@ -15,14 +15,15 @@
                         @endif
                         <div class="div-flex">
                             <button onclick="location.href='{{ route('instancia.create') }}'"
-                                class="btn btn-primary ">NUEVO</button>
+                                class="btn btn-primary ">
+                                <i class="bi bi-plus-square-dotted"></i>NUEVO</button>
                             <div class="input-group col-5">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
                                 <input id="busqueda" type="text" class="form-control" placeholder="BÚSQUEDA"
                                     style="text-transform: uppercase;" onkeyup='busquedaTabla()'>
                             </div>
                         </div>
-                        <table class="table col-md-10">
+                        <table class="table" id="tabla">
                             <thead>
                                 <tr>
                                     <th scope="col">NOMBRE</th>
@@ -46,13 +47,15 @@
                                                     class="btn btn-outline-secondary">DETALLE</button>
                                                 <button style="margin-right: 1rem"
                                                     onclick="location.href='{{ route('instancia.edit', $instancia->idInstancia) }}'"
-                                                    class="btn btn-outline-primary">MODIFICAR</button>
+                                                    class="btn btn-outline-primary"><i class="bi bi-pencil"></i>
+                                                    MODIFICAR</button>
                                                 <form action="{{ route('instancia.destroy', $instancia->idInstancia) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-outline-danger"
-                                                        onclick="return confirm( '¿ESTÁ SEGURO DE ELIMINAR {{ $instancia->nombre }}?') ">ELIMINAR</button>
+                                                        onclick="return confirm( '¿ESTÁ SEGURO DE ELIMINAR {{ $instancia->nombre }}?') ">
+                                                        <i class="bi bi-eraser"></i>ELIMINAR</button>
                                                 </form>
                                             </div>
                                         </td>
