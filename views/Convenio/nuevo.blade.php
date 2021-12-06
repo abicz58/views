@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sltEstatus" class="form-label">ESTATUS</label>
-                                <select name="sltEstatus" id="sltEstatus" class="form-control"
+                                <select name="sltEstatus" id="sltEstatus" class="form-select"
                                     onChange="agregarID(sltEstatus, txtEstatus)" required>
                                     <option selected>ELIJA EL ESTATUS</option>
                                     <option value="VIGENTE">VIGENTE</option>
@@ -41,13 +41,13 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="txtFolio" class="form-label">URL DEL CONVENIO DIGITAL</label>
-                                <input type="text" class="form-control" name="txtUrlConvenio" id="txtUrlConvenio"
+                                <label for="txtUrlConvenio" class="form-label">URL DEL CONVENIO DIGITAL</label>
+                                <input type="url" class="form-control" name="txtUrlConvenio" id="txtUrlConvenio"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <div class="form-group">
                                 <label for="sltTipo" class="form-label">TIPO DE CONVENIO</label>
-                                <select name="sltTipo" id="sltTipo" class="form-control"
+                                <select name="sltTipo" id="sltTipo" class="form-select"
                                     onChange="agregarID(sltTipo, txtIdTipoCon)" required>
                                     <option selected>ELIJA EL TIPO DE CONVENIO</option>
                                     @foreach ($tiposConvenios as $tipocon)
@@ -58,7 +58,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sltInstancia" class="form-label">INSTANCIA</label>
-                                <select name="sltInstancia" id="sltInstancia" class="form-control"
+                                <select name="sltInstancia" id="sltInstancia" class="form-select"
                                     onChange="agregarID(sltInstancia, txtIdInstancia)" required>
                                     <option selected>ELIJA LA INSTANCIA</option>
                                     @foreach ($instancias as $instancia)
@@ -68,7 +68,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sltIndicador" class="form-label">INDICADOR</label>
-                                <select name="sltIndicador" id="sltIndicador" class="form-control"
+                                <select name="sltIndicador" id="sltIndicador" class="form-select"
                                     onChange="agregarID(sltIndicador, txtIdIndicador)" required>
                                     <option selected>ELIJA EL INDICADOR</option>
                                     @foreach ($indicadores as $indicador)
@@ -77,12 +77,32 @@
                                     @endforeach
                                 </select>
                             </div>
-                            {{-- @if ($convenios === 1)
-                                <input hidden type="text" name="txtIdConvenio" id="txtIdConvenio" value="1">
-                            @else
-                                <input hidden type="text" name="txtIdConvenio" id="txtIdConvenio"
-                                    value="{{ $convenios }}">
-                            @endif --}}
+                            <div class="form-group">
+                                <label for="" class="form-label">CARRERA</label>
+                                <div class="div-flex">
+                                    @foreach ($carreras as $carrera)
+                                        <div class="form-check col-3">
+                                            <input class="form-check-input" type="checkbox"
+                                                onclick='crearArregloCarrera(flexCheckChecked_{{ $carrera->idCarrera }})'
+                                                value="{{ $carrera->idCarrera }}"
+                                                id="flexCheckChecked_{{ $carrera->idCarrera }}">
+                                            <label class="form-check-label"
+                                                for="flexCheckChecked_{{ $carrera->idCarrera }}">
+                                                {{ $carrera->nomCarrera }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    <div class="form-check col-3">
+                                        <input class="form-check-input" type="checkbox"
+                                            onclick='obtenerTodasCarreras({{ $carreras }})'
+                                            id="flexCheckChecked_todasCarreras">
+                                        <label class="form-check-label" for="flexCheckChecked_todasCarreras">
+                                            TODAS LAS CARRERAS
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input hidden type="text" name="txtCarreras" id="txtCarreras">
                             <input hidden type="text" name="txtIdIndicador" id="txtIdIndicador">
                             <input hidden type="text" name="txtEstatus" id="txtEstatus">
                             <input hidden type="text" name="txtIdTipoCon" id="txtIdTipoCon">

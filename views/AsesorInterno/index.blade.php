@@ -16,7 +16,7 @@
                         <div class="div-flex">
                             <button onclick="location.href='{{ route('asesor-interno.create') }}'"
                                 class="btn btn-primary ">
-                                <i class="bi bi-plus-square-dotted"></i>NUEVO</button>
+                                <i class="bi bi-plus-square-dotted"></i> NUEVO</button>
                             <div class="input-group col-5">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
                                 <input id="busqueda" type="text" class="form-control" placeholder="BÚSQUEDA"
@@ -51,7 +51,7 @@
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-outline-danger"
                                                         onclick="return confirm( '¿ESTÁ SEGURO DE ELIMINAR {{ $asesorInterno->nombre }}?') ">
-                                                        <i class="bi bi-eraser"></i>ELIMINAR</button>
+                                                        <i class="bi bi-eraser"></i> ELIMINAR</button>
                                                 </form>
                                             </div>
 

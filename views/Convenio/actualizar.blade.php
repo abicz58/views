@@ -33,11 +33,12 @@
                             <div class="mb-3">
                                 <label for="txtFolio" class="form-label">URL DEL CONVENIO</label>
                                 <input type="text" class="form-control" name="txtUrlConvenio" id="txtUrlConvenio"
-                                    value="{{ $convenios->urlConvenio }}" required>
+                                    value="{{ $convenios->urlConvenio }}"
+                                    onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             </div>
                             <div class="form-group">
                                 <label for="sltEstatus" class="form-label">ESTATUS</label>
-                                <select name="sltEstatus" id="sltEstatus" class="form-control"
+                                <select name="sltEstatus" id="sltEstatus" class="form-select"
                                     onChange="agregarID(sltEstatus, txtEstatus)" required>
                                     @if ($convenios->estatus === 'VIGENTE')
                                         <option>ELIJA EL ESTATUS</option>
@@ -59,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sltTipo" class="form-label">TIPO DE CONVENIO</label>
-                                <select name="sltTipo" id="sltTipo" class="form-control"
+                                <select name="sltTipo" id="sltTipo" class="form-select"
                                     onChange="agregarID(sltTipo, txtIdTipoCon)" required>
                                     <option>ELIJA EL TIPO DE CONVENIO</option>
                                     @foreach ($tipoConvenios as $tipocon)
@@ -77,7 +78,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sltInstancia" class="form-label">INSTANCIA</label>
-                                <select name="sltInstancia" id="sltInstancia" class="form-control"
+                                <select name="sltInstancia" id="sltInstancia" class="form-select"
                                     onChange="agregarID(sltInstancia, txtIdInstancia)" required>
                                     <option>ELIJA LA INSTANCIA</option>
                                     @foreach ($instancias as $instancia)
@@ -94,7 +95,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sltIndicador" class="form-label">INDICADOR</label>
-                                <select name="sltIndicador" id="sltIndicador" class="form-control"
+                                <select name="sltIndicador" id="sltIndicador" class="form-select"
                                     onChange="agregarID(sltIndicador, txtIdIndicador)" required>
                                     <option>ELIJA EL INDICADOR</option>
                                     @foreach ($indicadores as $indicador)
@@ -110,6 +111,35 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="" class="form-label">CARRERA</label>
+                                <div class="div-flex" id="div-flex">
+                                    @foreach ($carreras as $carrera)
+                                        <div class="form-check col-3">
+                                            <input class="form-check-input" type="checkbox"
+                                                onclick='crearArregloCarrera(flexCheckChecked_{{ $carrera->idCarrera }})'
+                                                value="{{ $carrera->idCarrera }}"
+                                                id="flexCheckChecked_{{ $carrera->idCarrera }}">
+                                            <label class="form-check-label"
+                                                for="flexCheckChecked_{{ $carrera->idCarrera }}">
+                                                {{ $carrera->nomCarrera }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    <div class="form-check col-3">
+                                        <input class="form-check-input" type="checkbox"
+                                            onclick='obtenerTodasCarreras({{ $carreras }})'
+                                            id="flexCheckChecked_todasCarreras">
+                                        <label class="form-check-label" for="flexCheckChecked_todasCarreras">
+                                            TODAS LAS CARRERAS
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input hidden type="text" name="txtIdCarreras" id="txtIdCarreras"
+                                value="{{ $convenios->carreras }}">
+                            <input hidden type="text" name="txtCarreraObj" id="txtCarreraObj" value="{{ $idCarreras }}">
                             <input hidden type="text" name="txtIdConvenio" id="txtIdConvenio"
                                 value="{{ $convenios->idConvenio }}">
                             <input hidden type="text" name="txtEstatus" id="txtEstatus"
@@ -129,4 +159,43 @@
             </div>
         </div>
     </div>
+    <script>
+        /* -------------------------------------------------------------------------- */
+        /*            Activar la casilla de las carreras de acuerdo a la BD           */
+        /* -------------------------------------------------------------------------- */
+        window.onload = function() {
+            activarCheckCarreras();
+        };
+
+        function activarCheckCarreras() {
+            let idCarreras = document.getElementById("txtIdCarreras").value.split(",");
+            console.log(idCarreras);
+            let objCarreras = document.getElementById("txtCarreraObj").value.split(",");
+            console.log(objCarreras);
+            if (objCarreras.length == idCarreras.length) {
+                console.log("TODAS LAS CARRERAS");
+                let cbTodasCarreras = document.getElementById(
+                    "flexCheckChecked_todasCarreras"
+                );
+                cbTodasCarreras.setAttribute("checked", "");
+            } else {
+                let id = "";
+                // console.log(objCarreras[0]["idCarrera"]);
+                for (let x = 0; x < objCarreras.length; x++) {
+                    for (let y = 0; y < idCarreras.length; y++) {
+                        if (objCarreras[x]["idCarrera"] == idCarreras[y]) {
+                            id = "flexCheckChecked_" + idCarreras[y];
+                            let carrera = document.getElementById(
+                                id
+                            );
+                            carrera.setAttribute("checked", "");
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+    </script>
 @endsection
